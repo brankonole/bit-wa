@@ -67,19 +67,22 @@ var x = function(movie) {
 
 ///data///
 
-const sendRequest = (url, callback) => {
-    fetch(url)
-    .then((response) => {
-        return response.json();
-    })
-    .then((newResp) => {
-        var movie = {
-            name: newResp.name,
-            imageURL : newResp.image.original
-        }
-        callback(movie);
-    }) 
-}
+const sendRequest = (url) => {
+    return fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((newResp) => {
+            var movie = {
+                name: newResp.name,
+                imageURL : newResp.image.original
+            }
+            return movie;
+        }) 
+    }
 
 
-sendRequest("http://api.tvmaze.com/shows/4", x)
+sendRequest("http://api.tvmaze.com/shows/4")
+    .then(function(movie){
+        console.log(movie);
+    });

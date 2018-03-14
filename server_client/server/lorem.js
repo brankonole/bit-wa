@@ -1,6 +1,5 @@
 const loremIpsum = require('lorem-ipsum');
-const Post = require('./data.js') 
-// let id = parseInt(Math.random()*100);
+const Post = require('./data.js');
 
 function generateTitle() {
     return loremIpsum({
