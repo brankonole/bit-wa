@@ -1,6 +1,7 @@
 import * as helpers from './dataModule.js';
 import * as uiHelpers from './UIModule.js';
 const url = 'http://127.0.0.1:3000/';
+let postsArray;
 
 helpers.fetchPosts(url)
     .then(function(res) {
@@ -11,11 +12,7 @@ helpers.fetchPosts(url)
             postsArr.push(post);
         }
 
-        return postsArr;
-    })
-    .then(function(posts){
-        return posts;
-    })
-    .then(function(posts){
-        uiHelpers.displayPosts(posts);
+        postsArray = postsArr;
     });
+    
+uiHelpers.displayPosts(postsArray);

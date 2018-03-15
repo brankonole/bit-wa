@@ -11,9 +11,6 @@ const fetchPosts = function fetchPosts(url) {
         .then(function (response) {
             return response.json();
         })
-        .then(function (res) {
-            return res;
-        })
 }
 
 export { Post, fetchPosts }
