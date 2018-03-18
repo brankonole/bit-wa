@@ -7,18 +7,20 @@ const ShoppingListItem = props => {
 const ShoppingList = props => {
     return (
         <ul>
-            { props.items.map((item, i) => <ShoppingListItem name={item} key={i}/> ) }
+            {props.items.map((item, i) => <ShoppingListItem name={item} key={i} />)}
         </ul>
     )
 }
 
 class App extends React.Component {
+    componentDidMount() {
+        console.log(this.h1);        
+    }
     
-
     render() {
         return (
             <div>
-                <h1>{this.props.title}</h1>
+                <h1 ref={(el) => { this.h1 = el; }}>{this.props.title}</h1>
                 <ShoppingList items={this.props.name}/>
             </div>
         )
@@ -36,5 +38,10 @@ class App extends React.Component {
 // }
 
 const root = document.getElementById('root');
+const props = {
+    title: "Something",
+    name: ["Beer", "Wine", "Whiskey", "Vodka", "Gin", "Rakijestina"]
+}
 
-ReactDOM.render(<App title={"Something"} name={["Beer", "Wine", "Whiskey", "Vodka", "Gin", "Rakijestina"]} />, root)
+
+ReactDOM.render(<App {...props} />, root)
