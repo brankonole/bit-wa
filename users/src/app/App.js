@@ -13,6 +13,7 @@ class App extends Component {
 			users: [],
 			active: true
 		}
+		console.log(typeof this.setState);
 	}
 
 	componentDidMount() {
@@ -29,15 +30,17 @@ class App extends Component {
 	}
 
 	handleClick = (event) => {
-		this.setState(prevState => ({
-            active: !prevState.active
-        }))
+		console.log(this);
+		
+		this.setState({
+            active: !this.state.active
+        })
 	}
 
 	render() {
 		return (
 			<div>
-                <Header className='nav-extended' name='React Users' handleChange={this.handleClick}/>
+                <Header className='nav-extended' name='React Users' handleClick={this.handleClick.bind(this)}/>
 			    <Main showGrid={this.state.active} /> 	
 		        <Footer className='page-footer' name='© 2014 Copyright Text'/>
             </div>

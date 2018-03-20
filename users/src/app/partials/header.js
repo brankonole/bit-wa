@@ -5,6 +5,10 @@ class Header extends Component {
         super(props);
     }
 
+    handleClick = () => {
+        this.props.handleClick();
+    }
+
     render() {
         // console.log(this.state.active);
         
@@ -14,7 +18,7 @@ class Header extends Component {
                 <a href="#" className="brand-logo center">{this.props.name}</a>
                 <ul className="right hide-on-med-and-down">
                     <li><a href="#"><i className="material-icons">refresh</i></a></li>
-                    <li value={this.state.active} onClick={this.handleClick}><a href="#"><i className="material-icons">list</i></a></li>
+                    <li onClick={this.handleClick}><a href="#"><i className="material-icons">list</i></a></li>
                 </ul> 
             </div>
         </nav>

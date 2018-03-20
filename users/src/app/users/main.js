@@ -6,10 +6,10 @@ import UserGrid from './UserGrid';
 class Main extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     items: [],
-        //     active: true  
-        // }
+        this.state = {
+            items: [],
+            active: true  
+        }
     }
 
     componentDidMount(){
@@ -20,12 +20,11 @@ class Main extends Component {
     
     
     render() {
-        console.log(this.state.items);
+        // console.log(this.state.items);
 
         return (
             <div className="js-outer-div container">
-                {this.state.items.map((item, i) => <SinglePost post={item} key={i} />)}
-                {/* <UserGrid data={this.state.items}/> */}
+                {this.props.showGrid ? this.state.items.map((item, i) => <SinglePost post={item} key={i} />) : <UserGrid data={this.state.items} />}                
             </div>
         )};
     }
