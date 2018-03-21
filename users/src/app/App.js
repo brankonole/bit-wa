@@ -4,7 +4,6 @@ import Footer from './partials/footer.js';
 import usersData from './users/usersData.js';
 import Main from './users/main.js';
 import { userService } from '../services/UserService.js';
-import User from '../entities/User.js';
 
 class App extends Component {
 	constructor(props) {
@@ -13,36 +12,44 @@ class App extends Component {
 			users: [],
 			active: true
 		}
-		console.log(typeof this.setState);
 	}
 
-	componentDidMount() {
+	loadData(){
 		userService.fetchUsers()
 			.then((usersData) => {
-				this.setState = ({
+				this.setState({
 					users: usersData
 				})
-				const bla = usersData.map((user, i) => {
-					return new User(user)
-				})
-				// console.log(bla);
 			})
 	}
 
+	componentDidMount() {
+		if(localStorage.getItem('page')) {
+			this.setState({
+				active: JSON.parse(localStorage.getItem('page'))
+			})
+		}
+
+		this.loadData();
+	}
+	
 	handleClick = (event) => {
-		console.log(this);
-		
-		this.setState({
-            active: !this.state.active
-        })
+		localStorage.setItem('page', !this.state.active)
+		this.setState((prevState, props) => ({
+			active: !this.state.active
+		}))		
+	}
+
+	reload = (event) => {
+		this.loadData();
 	}
 
 	render() {
 		return (
 			<div>
-                <Header className='nav-extended' name='React Users' handleClick={this.handleClick.bind(this)}/>
-			    <Main showGrid={this.state.active} /> 	
-		        <Footer className='page-footer' name='© 2014 Copyright Text'/>
+                <Header className='nav-extended' name='React Users' handleClick={this.handleClick} reload={this.reload} users={this.state.users} />
+			    <Main showGrid={this.state.active} users={this.state.users} /> 	
+		        <Footer className='page-footer' name='© 2014 Copyright Text' />
             </div>
 		);
 	}

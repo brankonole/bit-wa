@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import User from '../entities/User.js';
 
 class UserService extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class UserService extends Component {
                 })
                 .then((result) => {
                     const usersList = result.results
-                    return usersList
+                    return usersList.map((user, i) => {
+                        return new User(user)
+                    })
                 })
     }
 }

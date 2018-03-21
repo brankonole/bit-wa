@@ -1,32 +1,18 @@
 import React from 'react';
+import formatDate from '../../shared/utils/formatDate';
+import formatEmail from '../../shared/utils/formatEmail';
+import formatName from '../../shared/utils/formatName';
 
-const UserCard = (props) => {
-  const email = props.userData.email;
-  const hiddenCar = email.slice(3,6);
-
-  props.userData.email = email.replace(hiddenCar, '...');
-
-  const dateOfBirth = props.userData.dob.split(' ');
-  const date = dateOfBirth[0].split('-');
-  const finalDate = date[2] + '.' + date[1] + '.' + date[0];
-  console.log(finalDate);
-  
-  props.userData.dob = finalDate;
-
-  const firstLetter = (props.userData.name.first)[0].toUpperCase();
-  const otherNameLetter = (props.userData.name.first).slice(1);
-
-  props.userData.name.first = firstLetter + otherNameLetter;
-  
+const UserCard = (props) => {  
     return <div className="col s6 m4">
-      <div className="card">
+      <div className={props.className}>
         <div className="card-image">
-          <img src={props.userData.picture.large} />
-          <span className="card-title">{props.userData.name.first}</span>
+          <img src={props.userData.largePhoto} />
+          <span className="card-title">{formatName(props.userData.firstName)}</span>
         </div>
         <div className="card-content">
-          <p>{props.userData.email}</p>
-          <p>Birth date: {props.userData.dob}</p>
+          <p>{formatEmail(props.userData.email)}</p>
+          <p>Birth date: {formatDate(props.userData.dateOfBirth)}</p>
         </div>
       </div>
     </div>

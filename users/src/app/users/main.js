@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import postsData from './usersData.js';
 import SinglePost from './singlePost.js';
 import UserGrid from './UserGrid';
+import AllPost from './AllPost';
 
 class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [],
-            active: true  
+            items: []
         }
     }
 
@@ -18,13 +18,11 @@ class Main extends Component {
         })
     }
     
-    
     render() {
-        // console.log(this.state.items);
-
+        console.log(this.props.showGrid)
         return (
             <div className="js-outer-div container">
-                {this.props.showGrid ? this.state.items.map((item, i) => <SinglePost post={item} key={i} />) : <UserGrid data={this.state.items} />}                
+                {this.props.showGrid ? <AllPost data={this.props.users}/> : <UserGrid data={this.props.users} />}
             </div>
         )};
     }
