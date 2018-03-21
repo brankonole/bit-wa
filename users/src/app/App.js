@@ -10,16 +10,20 @@ class App extends Component {
 		super(props);
 		this.state = {
 			users: [],
-			active: true
+			active: true,
+			showLoader: true
 		}
+		this.users = []
 	}
 
 	loadData(){
 		userService.fetchUsers()
 			.then((usersData) => {
 				this.setState({
-					users: usersData
+					users: usersData,
+					showLoader: false
 				})
+				this.users = usersData
 			})
 	}
 
@@ -40,18 +44,34 @@ class App extends Component {
 		}))		
 	}
 
+	handleSearch = (event) => {
+		let inputVal = event.target.value;
+        
+        let filteredUsers = this.users.filter((user) => {
+            let filterItem = user.firstName.includes(inputVal);
+            return filterItem;
+		})
+
+		this.setState({
+			users: filteredUsers
+		})	
+	}
+
 	reload = (event) => {
 		this.loadData();
 	}
 
 	render() {
-		return (
+		console.log(this.state.users);
+
+		return (	
 			<div>
-                <Header className='nav-extended' name='React Users' handleClick={this.handleClick} reload={this.reload} users={this.state.users} />
-			    <Main showGrid={this.state.active} users={this.state.users} /> 	
-		        <Footer className='page-footer' name='© 2014 Copyright Text' />
-            </div>
+				<Header className='nav-extended' handleSearch={this.handleSearch} name='React Users' handleClick={this.handleClick} reload={this.reload} users={this.state.users} />
+				<Main showGrid={this.state.active} users={this.state.users} showLoader={this.state.showLoader} /> 	
+				<Footer className='page-footer' name='© 2014 Copyright Text' />
+			</div>
 		);
+
 	}
 }
 

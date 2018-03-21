@@ -19,12 +19,22 @@ class Main extends Component {
     }
     
     render() {
-        console.log(this.props.showGrid)
-        return (
-            <div className="js-outer-div container">
-                {this.props.showGrid ? <AllPost data={this.props.users}/> : <UserGrid data={this.props.users} />}
-            </div>
-        )};
+        // console.log(this.props.showGrid)
+
+        if (this.props.showLoader == true) {
+            return (
+                <div className="js-outer-div container">
+                    <h1>Loading...</h1>
+                </div>
+            )
+        } else {
+            return (
+                <div className="js-outer-div container">
+                    {this.props.showGrid ? <AllPost data={this.props.users}/> : <UserGrid data={this.props.users} />}
+                </div>
+            )};
+        }
+
     }
     
 export default Main;
