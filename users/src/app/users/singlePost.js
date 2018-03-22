@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import formatDate from '../../shared/utils/formatDate';
 import formatEmail from '../../shared/utils/formatEmail';
 import formatName from '../../shared/utils/formatName';
+import formatLastName from '../../shared/utils/formatLastName';
 
 const SinglePost = (props) => {
     return (
@@ -14,12 +15,12 @@ const SinglePost = (props) => {
                     <div className="row col s10">
                         <div className="col s10">
                             <span className="black-text">
-                            name: {formatName(props.post.firstName)}
+                            {`${formatName(props.post.firstName)}  ${formatLastName(props.post.lastName)}`}
                             </span>
                         </div>
                         <div className="col s10">
                             <span className="black-text">
-                            <i className="material-icons tiny">email</i>:
+                            <i className="material-icons tiny">email</i>
                             email: {formatEmail(props.post.email)}
                             </span>
                         </div>
