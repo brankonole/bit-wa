@@ -5,6 +5,7 @@ import UserGrid from './UserGrid';
 import AllPost from './AllPost';
 import Loader from '../partials/Loader';
 import NotFound from './NotFound.js';
+import StatsOfGender from './StatsOfGender.js';
 
 class Main extends Component {
     constructor(props) {
@@ -39,6 +40,7 @@ class Main extends Component {
             } else {
                 return (
                     <div className="js-outer-div container">
+                        <StatsOfGender data={this.props.users}/>
                         {this.props.showGrid ? <AllPost data={this.props.users}/> : <UserGrid data={this.props.users} />}
                     </div>
                 )};

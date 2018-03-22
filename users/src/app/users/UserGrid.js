@@ -1,5 +1,6 @@
 import React from 'react';
 import UserCard from './UserCard.js';
+import StatsOfGender from './StatsOfGender.js';
 
 const UserGrid = (props) => {
     return  <div className="row">

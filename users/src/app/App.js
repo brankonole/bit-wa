@@ -14,7 +14,7 @@ class App extends Component {
 			users: [],
 			active: true,
 			showLoader: true,
-			currentTime: localStorage.getItem('currentTime') || 0,
+			currentTime: localStorage.getItem('currentTime') || Date.now(),
 			countTime: localStorage.getItem('countTime') || 0
 		}
 		this.users = []
