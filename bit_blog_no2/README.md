@@ -145,7 +145,7 @@ my-app/
         home_page/
           Home.js
           PostItem.js
-        single_post_page/
+        single_post_page/     
           SinglePost.js
         authors/
           Authors.js
